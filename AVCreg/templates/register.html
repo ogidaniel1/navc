@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Include your meta tags, CSS, and JS as before -->
+</head>
+<body>
+    {% extends "base.html" %}
+    {% block title %}Register{% endblock %}
+    {% block content %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header header-light-green text-center">
+                        <h2>Register Stakeholder</h2>
+                    </div>
+                    <div class="card-body">
+                        <!-- Flash messages -->
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                            {% if messages %}
+                                <div class="pt-3">
+                                    {% for category, message in messages %}
+                                        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                                            {{ message }}
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        {% endwith %}
+                        <form method="POST" action="{{ url_for('register') }}">
+                            {{ form.hidden_tag() }}
+                            <div class="form-group">
+                                <label for="contact_person">Name</label>
+                                {{ form.contact_person(class="form-control", id="contact_person") }}
+                                {% if form.contact_person.errors %}
+                                    <div class="text-danger">
+                                        {% for error in form.contact_person.errors %}
+                                            <p>{{ error }}</p>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                <label for="position">Rank/Position</label>
+                                {{ form.position(class="form-control", id="position") }}
+                                {% if form.position.errors %}
+                                    <div class="text-danger">
+                                        {% for error in form.position.errors %}
+                                            <p>{{ error }}</p>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                <label for="business_name">Organisation/Business Name</label>
+                                {{ form.business_name(class="form-control", id="business_name") }}
+                                {% if form.business_name.errors %}
+                                    <div class="text-danger">
+                                        {% for error in form.business_name.errors %}
+                                            <p>{{ error }}</p>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                <label for="business_address">Business Address</label>
+                                {{ form.business_address(class="form-control", id="business_address") }}
+                                {% if form.business_address.errors %}
+                                    <div class="text-danger">
+                                        {% for error in form.business_address.errors %}
+                                            <p>{{ error }}</p>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                {{ form.email(class="form-control", id="email") }}
+                                {% if form.email.errors %}
+                                    <div class="text-danger">
+                                        {% for error in form.email.errors %}
+                                            <p>{{ error }}</p>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                <label for="phone_number">Phone Number</label>
+                                {{ form.phone_number(class="form-control", id="phone_number") }}
+                                {% if form.phone_number.errors %}
+                                    <div class="text-danger">
+                                        {% for error in form.phone_number.errors %}
+                                            <p>{{ error }}</p>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                <label for="state">State of Business</label>
+                                {{ form.state(class="form-control", id="state") }}
+                                {% if form.state.errors %}
+                                    <div class="text-danger">
+                                        {% for error in form.state.errors %}
+                                            <p>{{ error }}</p>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Register</button>
+                            </div>
+                        </form>
+                        <div class="text-center mt-3">
+                            <p>Already have an account? <a href="{{ url_for('login') }}">Login here</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+    
+    <!-- Include your scripts at the end -->
+</body>
+</html>

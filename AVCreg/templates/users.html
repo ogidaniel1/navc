@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registered Users</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Registered Users</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>SN</th>
+                    <th>Name</th>
+                    <th>Business Name</th>
+                    <th>Rank/Position</th>
+                    <th>Business Address</th>
+                    <th>Phone Number</th>
+                    <th>Email</th>
+                    <th>State</th>
+                    <th>Next Action</th>
+                    <th>Challenges</th>
+                    <th>Admin who Registered</th>
+                    <th>Updated by Admin</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{user.contact_person}}</td>
+                    <td>{{ user.business_name }}</td>
+                    <td>{{ user.position }}</td>
+                    <td>{{ user.business_address }}</td>
+                    <td>{{ user.phone_number }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.state }}</td>
+                    <td>{{ user.proposed_next_steps }}</td>
+                    <td>{{ user.challenges }}</td>
+                    <td>
+                        {% for admin in admins %}
+                            {% if admin.id == user.registered_by_admin_id %}
+                                {{ admin.admin_name }}
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for admin in admins %}
+                            {% if admin.id == user.last_edited_by %}
+                                {{ admin.admin_name }}
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
