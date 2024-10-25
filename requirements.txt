@@ -1,0 +1,5 @@
+pymysql
+flask_jwt_extended
+python
+flask
+gunicorn
